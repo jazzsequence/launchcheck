@@ -1,0 +1,3 @@
+[submodule "wp_launch_check"]
+	path = wp_launch_check
+	url = git@github.com:pantheon-systems/wp_launch_check
