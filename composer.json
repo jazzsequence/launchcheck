@@ -52,16 +52,11 @@
   "require": {
     "php": ">=7.4",
     "composer/installers": "^2.2",
-    "vlucas/phpdotenv": "^5.5",
-    "oscarotero/env": "^2.1",
     "roots/bedrock-autoloader": "*",
     "roots/bedrock-disallow-indexing": "*",
-    "roots/wordpress": "*",
-    "roots/wp-config": "*",
     "roots/wp-password-bcrypt": "*",
     "wpackagist-theme/twentytwentytwo": "^1.2",
     "pantheon-systems/pantheon-mu-plugin": "*",
-    "pantheon-upstreams/upstream-configuration": "dev-main",
     "wpackagist-plugin/pantheon-advanced-page-cache": "*",
     "wpackagist-plugin/wp-native-php-sessions": "*",
     "cweagans/composer-patches": "^1.7"
@@ -77,7 +72,6 @@
     "process-timeout": 0,
     "allow-plugins": {
       "composer/installers": true,
-      "roots/wordpress-core-installer": true,
       "cweagans/composer-patches": true,
       "dealerdirect/phpcodesniffer-composer-installer": true
     }
@@ -85,23 +79,7 @@
   "minimum-stability": "stable",
   "prefer-stable": true,
   "extra": {
-    "installer-paths": {
-      "web/app/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
-      "web/app/plugins/{$name}/": ["type:wordpress-plugin"],
-      "web/app/themes/{$name}/": ["type:wordpress-theme"]
-    },
-    "wordpress-install-dir": "web/wp",
-    "build-env": {
-      "install-cms": [
-        "wp core install --title={site-name} --url={site-url} --admin_user={account-name} --admin_email={account-mail} --admin_password={account-pass}",
-        "wp option update permalink_structure '/%postname%/'"
-      ]
-    },
-    "composer-scaffold": {
-      "locations": {
-        "web-root": "./"
-      }
-    },
+    "installer-paths": {},
     "composer-exit-on-patch-failure": true,
     "enable-patching": true
   },
@@ -111,26 +89,13 @@
       ]
   },
   "scripts": {
-    "post-root-package-install": [
-      "php -r \"copy('.env.example', '.env');\""
-    ],
-    "post-install-cmd": [
-      "cd web; ln -s wp/* . || true",
-      "rm web/wp-settings.php"
-    ],
-    "pre-update-cmd": [
-      "WordPressComposerManaged\\ComposerScripts::preUpdate"
-    ],
-    "install-sage": [
-      "bash ./private/scripts/sage-theme-install.sh"
-    ],
     "lint": [
       "@lint:php",
       "@lint:phpcs",
       "@lint:bash"
     ],
     "lint:php": [
-      "php -l web/wp/wp-settings.php"
+      "php -l wp-settings.php"
     ],
     "lint:phpcs": [
       "phpcs"
