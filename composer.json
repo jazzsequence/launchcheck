@@ -67,6 +67,17 @@
     "lint:bash": [
       "shellcheck private/scripts/*.sh"
     ],
-    "test": []
+    "test": [],
+    "launchcheck:install": [
+      "composer install --working-dir=wp_launch_check"
+    ],
+    "launchcheck:init": [
+      "bash private/scripts/check-jq.sh",
+      "composer launchcheck:install"
+    ]
+  },
+  "scripts-descriptions": {
+    "launchcheck:install": "Install WP-CLI launchcheck dependencies. To run launchcheck, use `lando wp launchcheck <option>`",
+    "launchcheck:init": "Install WP-CLI launchcheck dependencies and attempt to install jq. To run launchcheck with jq, use `lando wp launchcheck <option> --format=json | jq`"
   }
 }
