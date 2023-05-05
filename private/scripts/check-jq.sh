@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+normal=$(tput sgr0)
+yellow=$(tput setaf 3)
 
 # Check if jq is installed. If it's not, try a couple ways of installing it.
 function check_jq() {
