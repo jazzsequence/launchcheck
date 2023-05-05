@@ -60,16 +60,8 @@ if (getenv('LANDO_INFO')) {
 
 Config::define('DB_CHARSET', 'utf8mb4');
 Config::define('DB_COLLATE', '');
+Config::define( 'WP_ALLOW_REPAIR', true );
 $table_prefix = env('DB_PREFIX') ?: 'wp_';
-
-if (env('DATABASE_URL')) {
-    $dsn = (object) parse_url(env('DATABASE_URL'));
-
-    Config::define('DB_NAME', substr($dsn->path, 1));
-    Config::define('DB_USER', $dsn->user);
-    Config::define('DB_PASSWORD', isset($dsn->pass) ? $dsn->pass : null);
-    Config::define('DB_HOST', isset($dsn->port) ? "{$dsn->host}:{$dsn->port}" : $dsn->host);
-}
 
 /**
  * URLs
