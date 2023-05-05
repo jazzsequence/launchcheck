@@ -1,14 +1,7 @@
 name: launchcheck
 recipe: wordpress
 config:
-  webroot: web
+  webroot: .
   php: "8.0"
   database: mariadb:10.5
   xdebug: true
-services:
-  appserver:
-    build_as_root:
-      - bash private/scripts/maybe-add-wp-cli.sh
-tooling:
-  wp:
-    service: 'appserver'
