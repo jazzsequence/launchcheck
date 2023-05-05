@@ -33,42 +33,59 @@ $env_files = file_exists($root_dir . '/.env.local')
     : ['.env', '.env.pantheon'];
 
 $dotenv = Dotenv\Dotenv::createUnsafeImmutable($root_dir, $env_files, false);
+if (
+    // Check if a .env file exists.
+    file_exists($root_dir . '/.env') ||
+    // Also check if we're using Lando and a .env.local file exists.
+    ( file_exists($root_dir . '/.env.local') && ( isset( $_ENV['PANTHEON_ENVIRONMENT'] ) && 'lando' === $_ENV['PANTHEON_ENVIRONMENT'] ) ) ||
+    ( file_exists( $root_dir . '/.env.local' ) && ! empty( env( 'LANDO' ) ) )
+) {
+    $dotenv->load();
+    if (!env('DATABASE_URL')) {
+        $dotenv->required(['DB_NAME', 'DB_USER', 'DB_PASSWORD']);
+    }
+}
 
 /**
  * Set up our global environment constant and load its config first
  * Default: production
  */
 define('WP_ENV', env('WP_ENV') ?: 'production');
+
 /**
  * DB settings
- * This will ensure these are only loaded on Lando
  */
-if (getenv('LANDO_INFO')) {
-    $lando_info = json_decode(getenv('LANDO_INFO'));
-    $database_config = $lando_info->database;
-
-    Config::define('DB_NAME', $database_config->creds->database ?: 'wordpress');
-    Config::define('DB_USER', $database_config->creds->user ?: 'wordpress');
-    Config::define('DB_PASSWORD', $database_config->creds->password ?: 'wordpress');
-    Config::define('DB_HOST', $database_config->internal_connection->host ?: 'database');
-} else {
-    Config::define('DB_NAME', env('DB_NAME'));
-    Config::define('DB_USER', env('DB_USER'));
-    Config::define('DB_PASSWORD', env('DB_PASSWORD'));
-    Config::define('DB_HOST', env('DB_HOST') ?: 'localhost');
-}
-
+Config::define('DB_NAME', env('DB_NAME'));
+Config::define('DB_USER', env('DB_USER'));
+Config::define('DB_PASSWORD', env('DB_PASSWORD'));
+Config::define('DB_HOST', env('DB_HOST') ?: 'localhost');
 Config::define('DB_CHARSET', 'utf8mb4');
 Config::define('DB_COLLATE', '');
-Config::define( 'WP_ALLOW_REPAIR', true );
 $table_prefix = env('DB_PREFIX') ?: 'wp_';
 
+if (env('DATABASE_URL')) {
+    $dsn = (object) parse_url(env('DATABASE_URL'));
+
+    Config::define('DB_NAME', substr($dsn->path, 1));
+    Config::define('DB_USER', $dsn->user);
+    Config::define('DB_PASSWORD', isset($dsn->pass) ? $dsn->pass : null);
+    Config::define('DB_HOST', isset($dsn->port) ? "{$dsn->host}:{$dsn->port}" : $dsn->host);
+}
+
 /**
- * URLs
-*/
-Config::define('WP_HOME', env('WP_HOME'));
-Config::define('WP_SITEURL', env('WP_SITEURL'));
-Config::define('DISABLE_WP_CRON', env('DISABLE_WP_CRON') ?: false);
+ * Pantheon modifications
+ */
+if (isset($_ENV['PANTHEON_ENVIRONMENT']) && 'lando' !== $_ENV['PANTHEON_ENVIRONMENT']) {
+    Config::define('DB_HOST', $_ENV['DB_HOST'] . ':' . $_ENV['DB_PORT']);
+} else {
+    /**
+     * URLs
+     */
+    Config::define('WP_HOME', env('WP_HOME'));
+    Config::define('WP_SITEURL', env('WP_SITEURL'));
+    Config::define('DB_HOST', env('DB_HOST') ?: 'localhost');
+    Config::define('DISABLE_WP_CRON', env('DISABLE_WP_CRON') ?: false);
+}
 
 /**
  * Custom Content Directory
@@ -103,9 +120,9 @@ Config::define('WP_POST_REVISIONS', env('WP_POST_REVISIONS') ?: true);
 /**
  * Debugging Settings
  */
-Config::define('WP_DEBUG_DISPLAY', true);
+Config::define('WP_DEBUG_DISPLAY', false);
 Config::define('WP_DEBUG_LOG', false);
-Config::define('SCRIPT_DEBUG', true);
+Config::define('SCRIPT_DEBUG', false);
 ini_set('display_errors', '0');
 
 /**
