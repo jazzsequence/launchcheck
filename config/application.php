@@ -37,7 +37,7 @@ if (
     // Check if a .env file exists.
     file_exists($root_dir . '/.env') ||
     // Also check if we're using Lando and a .env.local file exists.
-    ( file_exists($root_dir . '/.env.local') && 'lando' === $_ENV['PANTHEON_ENVIRONMENT'] )
+    ( file_exists($root_dir . '/.env.local') )
 ) {
     $dotenv->load();
     if (!env('DATABASE_URL')) {
