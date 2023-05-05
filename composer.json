@@ -51,11 +51,7 @@
     "composer-exit-on-patch-failure": true,
     "enable-patching": true
   },
-  "autoload": {
-      "classmap": [
-          "upstream-configuration/scripts/ComposerScripts.php"
-      ]
-  },
+  "autoload": {},
   "scripts": {
     "lint": [
       "@lint:php",
@@ -71,12 +67,6 @@
     "lint:bash": [
       "shellcheck private/scripts/*.sh"
     ],
-    "test": [],
-    "upstream-require": [
-        "WordPressComposerManaged\\ComposerScripts::upstreamRequire"
-    ]
-  },
-  "scripts-descriptions": {
-      "upstream-require": "Add a dependency to an upstream. See https://pantheon.io/docs/create-custom-upstream for information on creating custom upstreams."
+    "test": []
   }
 }
