@@ -47,10 +47,10 @@ if (getenv('LANDO_INFO')) {
     $lando_info = json_decode(getenv('LANDO_INFO'));
     $database_config = $lando_info->database;
 
-    Config::define('DB_NAME', $database_config->creds->database);
-    Config::define('DB_USER', $database_config->creds->user);
-    Config::define('DB_PASSWORD', $database_config->creds->password);
-    Config::define('DB_HOST', $database_config->internal_connection->host);
+    Config::define('DB_NAME', $database_config->creds->database ?: 'wordpress');
+    Config::define('DB_USER', $database_config->creds->user ?: 'wordpress');
+    Config::define('DB_PASSWORD', $database_config->creds->password ?: 'wordpress');
+    Config::define('DB_HOST', $database_config->internal_connection->host ?: 'database');
 } else {
     Config::define('DB_NAME', env('DB_NAME'));
     Config::define('DB_USER', env('DB_USER'));
@@ -103,9 +103,9 @@ Config::define('WP_POST_REVISIONS', env('WP_POST_REVISIONS') ?: true);
 /**
  * Debugging Settings
  */
-Config::define('WP_DEBUG_DISPLAY', false);
+Config::define('WP_DEBUG_DISPLAY', true);
 Config::define('WP_DEBUG_LOG', false);
-Config::define('SCRIPT_DEBUG', false);
+Config::define('SCRIPT_DEBUG', true);
 ini_set('display_errors', '0');
 
 /**
