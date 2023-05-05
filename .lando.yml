@@ -1,0 +1,16 @@
+name: launchcheck
+recipe: wordpress
+config:
+  webroot: web
+  php: "8.0"
+  database: mariadb:10.5
+  xdebug: true
+services:
+  appserver:
+    build_as_root:
+      - curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+      - chmod +x wp-cli.phar
+      - mv wp-cli.phar /usr/local/bin/wp
+tooling:
+  wp:
+    service: 'appserver'
