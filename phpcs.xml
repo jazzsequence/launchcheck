@@ -3,7 +3,13 @@
   <description>Launcheck sniffs based on Pantheon WP Coding Standards</description>
 
   <!-- Scan all files in directory -->
-  <file>./wp_launch_check/</file>
+  <file>.</file>
+
+  <exclude-pattern>vendor/*</exclude-pattern>
+  <exclude-pattern>wp-*/*</exclude-pattern>
+  <exclude-pattern>wp-*.php</exclude-pattern>
+  <exclude-pattern>index.php</exclude-pattern>
+  <exclude-pattern>xmlrpc.php</exclude-pattern>
 
   <!-- Scan only PHP files -->
   <arg name="extensions" value="php"/>
