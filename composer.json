@@ -63,7 +63,7 @@
       "@lint:bash"
     ],
     "lint:php": [
-      "php -l wp-settings.php"
+      "find ./wp_launch_check -name '*.php' -exec php -l {} \\;"
     ],
     "lint:phpcs": [
       "phpcs"
