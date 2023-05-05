@@ -2,31 +2,10 @@
 # WordPress projects. Because .gitignore is specific to your site and its
 # deployment processes, you may need to uncomment, add, or remove rules.
 
-# The /web/app/ directory is used in favor of /wp-content in a traditional
-# WordPress project. This is where files are uploaded to, where plugins and
-# themes are installed and where other writeable directories are created.
-# Plugin, theme and mu-plugin paths are defined later and handled differently,
-# but in most cases, we don't want to version control anything in here.
-# It's unlikely that you would need to change any of these rules.
-web/app/upgrade
-web/app/uploads/*
-!web/app/uploads/.gitkeep
-web/app/cache/*
-
-# WordPress is installed in web/wp so that it can be fully managed by Composer.
-# This ensures that the WordPress directory is clean and doesn't contain any
-# files other than those that come with the WordPress package.
-web/wp
-web/.htaccess
-
-# Our Composer post-install command creates a symbolic link to web/wp inside
-# web. We don't want to version control these linked files, so we ignore them
-# explicitly.
-web/license.txt
-web/readme.html
-web/index.php
-web/wp-*
-web/xmlrpc.php
+wp-content/upgrade
+wp-content/uploads/*
+!wp-content/uploads/.gitkeep
+wp-content/cache/*
 
 # Logfiles should always be ignored.
 *.log
@@ -58,42 +37,42 @@ wp-cli.local.yml
 # Ignore packages uploaded to mu-plugins by default. These area typically
 # managed by composer as wordpress-muplugins. If you have custom mu-plugins,
 # you will need to explicitly exclude them from this rule like this:
-# !web/app/mu-plugins/my-muplugin/
+# !wp-content/mu-plugins/my-muplugin/
 # By default, individual mu-plugin files are not ignored, so any bare file in
 # mu-plugins is version controlled. Exceptions to this rule are made to specific
 # files managed by Composer.
-web/app/mu-plugins/*/
+wp-content/mu-plugins/*/
 
 # Plugins
 # Ignore the plugins directory by default. WordPress plugins should be managed
 # by Composer, where we have more control over the version constraints of the
 # plugins. If you have custom plugins, you will need to explicitly exclude them
 # from this rule like this:
-# !web/app/plugins/my-plugin
-web/app/plugins/*
-!web/app/plugins/.gitkeep
+# !wp-content/plugins/my-plugin
+wp-content/plugins/*
+!wp-content/plugins/.gitkeep
 
 # Themes
 # We don't ignore all themes by default as these are most commonly where a
 # bulk of a site's custom code may be. However, we do ignore all of the
 # twenty-* themes by default. Any other Composer-managed themes should be
 # added to this list.
-web/app/themes/twenty*
+wp-content/themes/twenty*
 
 # Other WordPress files and directories
 # Any other files or directories that should not be version controlled go here.
 # A lot of stuff from the non-Composer-managed WordPress upstream is repeated
 # here.
-web/app/backups/
-web/app/backupwordpress-*/
-web/app/blogs.dir/
-web/app/backup-db/
-web/app/cache/
-web/app/managewp/backups/
-web/app/updraft/
-web/app/upgrade/
-web/app/advanced-cache.php
-web/app/wp-cache-config.php
+wp-content/backups/
+wp-content/backupwordpress-*/
+wp-content/blogs.dir/
+wp-content/backup-db/
+wp-content/cache/
+wp-content/managewp/backups/
+wp-content/updraft/
+wp-content/upgrade/
+wp-content/advanced-cache.php
+wp-content/wp-cache-config.php
 web/wp-config-local.php
 sitemap.xml
 sitemap.xml.gz

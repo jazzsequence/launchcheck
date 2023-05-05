@@ -11,4 +11,3 @@ This is a test environment based on [Lando](https://docs.lando.dev/) for testing
 ## Todo
 * [ ] Add scripts to run `launchcheck` from the local installation.
 * [ ] Update the `.gitignore`
-* [ ] Update `phpcs.xml` to use [Pantheon WP coding standards](https://github.com/pantheon-systems/pantheon-wp-coding-standards).
