@@ -43,10 +43,6 @@
       "type": "composer",
       "url": "https://wpackagist.org",
       "only": ["wpackagist-plugin/*", "wpackagist-theme/*"]
-    },
-    {
-        "type": "path",
-        "url": "upstream-configuration"
     }
   ],
   "require": {
