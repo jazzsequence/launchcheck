@@ -1,43 +1,15 @@
 {
-  "name": "pantheon-systems/wordpress-composer-managed",
+  "name": "jazzsequence/launchcheck",
   "type": "project",
   "license": "MIT",
-  "description": "Pantheon's recommended starting point for WordPress upstreams using the platform's Integrated Composer build process.",
-  "homepage": "https://pantheon.io/docs/guides/wordpress-composer",
+  "description": "Local WP environment for testing the WP-CLI launchcheck command.",
   "authors": [
-    {
-      "name": "Pantheon Systems",
-      "homepage": "https://pantheon.io"
-    },
-    {
-      "name": "John Spellman",
-      "email": "john.spellman@pantheon.io",
-      "homepage": "https://github.com/jspellman814"
-    },
     {
       "name": "Chris Reynolds",
       "email": "chris.reynolds@pantheon.io",
       "homepage": "https://github.com/jazzsequence"
-    },
-    {
-      "name": "Scott Walkinshaw",
-      "email": "scott.walkinshaw@gmail.com",
-      "homepage": "https://github.com/swalkinshaw"
-    },
-    {
-      "name": "Ben Word",
-      "email": "ben@benword.com",
-      "homepage": "https://github.com/retlehs"
     }
   ],
-  "keywords": [
-    "bedrock", "composer", "roots", "wordpress", "wp", "wp-config", "pantheon"
-  ],
-  "support": {
-    "issues": "https://github.com/pantheon-systems/wordpress-composer-managed/issues",
-    "docs": "https://pantheon.io/docs/guides/wordpress-composer",
-    "forum": "https://discuss.pantheon.io"
-  },
   "repositories": [
     {
       "type": "composer",
