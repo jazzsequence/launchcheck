@@ -9,7 +9,7 @@ This is a test environment based on [Lando](https://docs.lando.dev/) for testing
 [Composer](https://getcomposer.org) is used to manage plugins and themes within the WordPress environment (although it may be more desirable to test plugin/theme installation using WP-CLI) but not to manage WordPress core itself. Composer scripts for running `wp_launch_check` are included in the `composer.json` file.
 
 ## Installation
-Before you are able to run `launchcheck` you will need to setup your environment. This includes running a `composer install` inside the `wp_launch_check` directory. You can run the `composer launchcheck:init` script to take care of this for you.
+Before you are able to run `launchcheck` you will need to setup your environment. You can run the `composer launchcheck:init` script to take care of this for you.
 
 `launchcheck:init` also checks for the existence of [`jq`](https://stedolan.github.io/jq/) on your system. Using `jq` is optional, but it can be helpful to more easily parse JSON output when using the `--format=json` flag in `launchcheck` commands, e.g. `lando wp launchcheck config --format=json | jq`.
 
