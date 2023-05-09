@@ -36,13 +36,13 @@ if (getenv('LANDO_INFO')) {
     /** Get the database config */
     $database_config = $lando_info->database;
     /** The name of the database for WordPress */
-    define('DB_NAME', $database_config->creds->database);
+    defined( 'DB_NAME' ) or define('DB_NAME', $database_config->creds->database);
     /** MySQL database username */
-    define('DB_USER', $database_config->creds->user);
+    defined( 'DB_USER' ) or define('DB_USER', $database_config->creds->user);
     /** MySQL database password */
-    define('DB_PASSWORD', $database_config->creds->password);
+    defined( 'DB_PASSWORD' ) or define('DB_PASSWORD', $database_config->creds->password);
     /** MySQL hostname */
-    define('DB_HOST', $database_config->internal_connection->host);
+    defined( 'DB_HOST' ) or define('DB_HOST', $database_config->internal_connection->host);
 
     /** URL routing (Optional, may not be necessary) */
     // define('WP_HOME','http://mysite.lndo.site');
@@ -50,10 +50,10 @@ if (getenv('LANDO_INFO')) {
   };
 
 /** Database charset to use in creating database tables. */
-define( 'DB_CHARSET', 'utf8mb4' );
+defined( 'DB_CHARSET' ) or define( 'DB_CHARSET', 'utf8mb4' );
 
 /** The database collate type. Don't change this if in doubt. */
-define( 'DB_COLLATE', '' );
+defined( 'DB_COLLATE' ) or define( 'DB_COLLATE', '' );
 
 /**#@+
  * Authentication unique keys and salts.
@@ -66,15 +66,15 @@ define( 'DB_COLLATE', '' );
  *
  * @since 2.6.0
  */
-define( 'AUTH_KEY',          'zz<SFu9[H^-{XV/9jgej*{W7/!eWDz.fm)BWBCYex$DP,ru6hRYN*=40.-fUvjJ:' );
-define( 'SECURE_AUTH_KEY',   'Q8Dc|5Usp6eMNI!Nc8ClD=z+h $~WtYAu%wD.#4$zI(cF)7qDk(=BqBv>P^_-Lbf' );
-define( 'LOGGED_IN_KEY',     '12h^HN9Yt4b:lVEtB6rbBm,$1Igd m[`v0GM7xlZ1{fe,Y67KJ7Em?GK4.`EfT#l' );
-define( 'NONCE_KEY',         'aMwYqtwJ3A]N){q3LsU.-!Q`K~uJ68W0 `Geb&SqfwB+h{`Zs,L,kq0T//)hH/V@' );
-define( 'AUTH_SALT',         'C#0<6lF:a^Q;b_{>eu+6QazxR*^>{Q&O0#8E7)LC3ue/ [_u$,b;nPkGGyQC2ktC' );
-define( 'SECURE_AUTH_SALT',  '%E%(BDxilh[O[%~B,Z1zsq$dY9+b761c2s{cTAXIp+g=p>e1b(<_o)C-@vALANKE' );
-define( 'LOGGED_IN_SALT',    'U_RijQ*,|%{)kf:$T`:?Mb:qH 3dy >Dz]4a%!Wy_3YQz=;UIL~,g>hC}jbci>k*' );
-define( 'NONCE_SALT',        '7x@B>evG7<8CUkK@dgn%~u/7/1uk!MQt; ]C0Pe0lk`EOkC?|1<`yKp^5j&<6*v,' );
-define( 'WP_CACHE_KEY_SALT', '<ksu3Gc!?~mC#XqZekhi:1[g1gKD.NG_zPp.deju{dQGEiKM@07#K[jto]xK;!@6' );
+defined( 'AUTH_KEY' ) or define( 'AUTH_KEY',          'zz<SFu9[H^-{XV/9jgej*{W7/!eWDz.fm)BWBCYex$DP,ru6hRYN*=40.-fUvjJ:' );
+defined( 'SECURE_AUTH_KEY' ) or define( 'SECURE_AUTH_KEY',   'Q8Dc|5Usp6eMNI!Nc8ClD=z+h $~WtYAu%wD.#4$zI(cF)7qDk(=BqBv>P^_-Lbf' );
+defined( 'LOGGED_IN_KEY' ) or define( 'LOGGED_IN_KEY',     '12h^HN9Yt4b:lVEtB6rbBm,$1Igd m[`v0GM7xlZ1{fe,Y67KJ7Em?GK4.`EfT#l' );
+defined( 'NONCE_KEY' ) or define( 'NONCE_KEY',         'aMwYqtwJ3A]N){q3LsU.-!Q`K~uJ68W0 `Geb&SqfwB+h{`Zs,L,kq0T//)hH/V@' );
+defined( 'AUTH_SALT' ) or define( 'AUTH_SALT',         'C#0<6lF:a^Q;b_{>eu+6QazxR*^>{Q&O0#8E7)LC3ue/ [_u$,b;nPkGGyQC2ktC' );
+defined( 'SECURE_AUTH_SALT' ) or define( 'SECURE_AUTH_SALT',  '%E%(BDxilh[O[%~B,Z1zsq$dY9+b761c2s{cTAXIp+g=p>e1b(<_o)C-@vALANKE' );
+defined( 'LOGGED_IN_SALT' ) or define( 'LOGGED_IN_SALT',    'U_RijQ*,|%{)kf:$T`:?Mb:qH 3dy >Dz]4a%!Wy_3YQz=;UIL~,g>hC}jbci>k*' );
+defined( 'NONCE_SALT' ) or define( 'NONCE_SALT',        '7x@B>evG7<8CUkK@dgn%~u/7/1uk!MQt; ]C0Pe0lk`EOkC?|1<`yKp^5j&<6*v,' );
+defined( 'WP_CACHE_KEY_SALT' ) or define( 'WP_CACHE_KEY_SALT', '<ksu3Gc!?~mC#XqZekhi:1[g1gKD.NG_zPp.deju{dQGEiKM@07#K[jto]xK;!@6' );
 
 
 /**#@-*/
@@ -110,16 +110,14 @@ if ( ! defined( 'WP_DEBUG' ) ) {
     define( 'SCRIPT_DEBUG', true );
 }
 
-
-
-define( 'WP_ALLOW_MULTISITE', true );
-define( 'MULTISITE', true );
-define( 'SUBDOMAIN_INSTALL', false );
+defined( 'WP_ALLOW_MULTISITE' ) or define( 'WP_ALLOW_MULTISITE', true );
+defined( 'MULTISITE' ) or define( 'MULTISITE', true );
+defined( 'SUBDOMAIN_INSTALL' ) or define( 'SUBDOMAIN_INSTALL', false );
 $base = '/';
-define( 'DOMAIN_CURRENT_SITE', 'launchcheck.lndo.site' );
-define( 'PATH_CURRENT_SITE', '/' );
-define( 'SITE_ID_CURRENT_SITE', 1 );
-define( 'BLOG_ID_CURRENT_SITE', 1 );
+defined( 'DOMAIN_CURRENT_SITE' ) or define( 'DOMAIN_CURRENT_SITE', 'launchcheck.lndo.site' );
+defined( 'PATH_CURRENT_SITE' ) or define( 'PATH_CURRENT_SITE', '/' );
+defined( 'SITE_ID_CURRENT_SITE' ) or define( 'SITE_ID_CURRENT_SITE', 1 );
+defined( 'BLOG_ID_CURRENT_SITE' ) or define( 'BLOG_ID_CURRENT_SITE', 1 );
 
 /* That's all, stop editing! Happy publishing. */
 
