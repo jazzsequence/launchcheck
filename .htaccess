@@ -1,0 +1,51 @@
+# WordPress .htaccess file
+# https://wordpress.org/documentation/article/htaccess/
+# This .htaccess file gives options for basic WordPress sites as well as
+# WordPress multisite in both subdirectory and subdomain configurations.
+# Comment out (or back in) as necessary for your particular configuration.
+
+# BEGIN BASIC WordPress
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+# RewriteRule ^index\.php$ - [L]
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteRule . /index.php [L]
+
+# END BASIC WordPress
+
+
+# BEGIN SUBDIRECTORY WordPress Multisite
+# Using subfolder network type: https://wordpress.org/documentation/article/htaccess/#multisite
+RewriteRule ^index\.php$ - [L]
+
+# add a trailing slash to /wp-admin
+RewriteRule ^([_0-9a-zA-Z-]+/)?wp-admin$ $1wp-admin/ [R=301,L]
+
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?(wp-(content|admin|includes).*) $2 [L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?(.*\.php)$ $2 [L]
+
+# END SUBDIRECTORY WordPress Multisite
+
+# BEGIN SUBDOMAIN WordPress Multisite
+# Using subdomain network type: https://wordpress.org/documentation/article/htaccess/#multisite
+# RewriteRule ^index\.php$ - [L]
+
+# # add a trailing slash to /wp-admin
+# RewriteRule ^wp-admin$ wp-admin/ [R=301,L]
+
+# RewriteCond %{REQUEST_FILENAME} -f [OR]
+# RewriteCond %{REQUEST_FILENAME} -d
+# RewriteRule ^ - [L]
+# RewriteRule ^(wp-(content|admin|includes).*) $1 [L]
+# RewriteRule ^(.*\.php)$ $1 [L]
+
+# END SUBDOMAIN WordPress Multisite
+
+# This is used for both SUBDIRECTORY and SUBDOMAIN multisite. Do not comment
+# out unless you are using single site WordPress.
+RewriteRule . index.php [L]
