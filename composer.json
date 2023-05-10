@@ -69,10 +69,14 @@
     ],
     "test": [],
     "launchcheck:install": [
+      "git submodule init",
+      "git submodule update",
       "composer install --working-dir=wp_launch_check"
     ],
     "launchcheck:init": [
       "bash private/scripts/check-jq.sh",
+      "git submodule init",
+      "git submodule update",
       "composer launchcheck:install"
     ]
   },
