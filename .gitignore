@@ -2,7 +2,6 @@
 # WordPress projects. Because .gitignore is specific to your site and its
 # deployment processes, you may need to uncomment, add, or remove rules.
 
-wp-content/upgrade
 wp-content/uploads/*
 !wp-content/uploads/.gitkeep
 wp-content/cache/*
@@ -67,13 +66,13 @@ wp-content/backups/
 wp-content/backupwordpress-*/
 wp-content/blogs.dir/
 wp-content/backup-db/
-wp-content/cache/
 wp-content/managewp/backups/
 wp-content/updraft/
 wp-content/upgrade/
 wp-content/advanced-cache.php
 wp-content/wp-cache-config.php
-web/wp-config-local.php
+wp-content/object-cache.php
+wp-config-local.php
 sitemap.xml
 sitemap.xml.gz
 
@@ -83,20 +82,11 @@ sitemap.xml.gz
 # this rule because this may contain information that should be shared across
 # environments and is not considered sensitive data. However, that exclusion
 # should be removed if that is not the case.
-!web/private/
-web/private/*
-!web/private/config/
+!private/
+private/*
+!private/config/
 
-# Autoloader
-# This file loads the Composer autoloader and is moved to the root directory by
-# pantheon-systems/composer-scaffold. This should not be moved or removed or it
-# could prevent the site from working correctly.
-/autoload.php
 
-# Pantheon.upstream.yml
-# Avoid accidental modification of pantheon.upstream.yml in sites
-# created from this upstream
-pantheon.upstream.yml
 
 # Files
 # Common files that should not be version controlled.
