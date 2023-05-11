@@ -119,6 +119,11 @@ defined( 'PATH_CURRENT_SITE' ) or define( 'PATH_CURRENT_SITE', '/' );
 defined( 'SITE_ID_CURRENT_SITE' ) or define( 'SITE_ID_CURRENT_SITE', 1 );
 defined( 'BLOG_ID_CURRENT_SITE' ) or define( 'BLOG_ID_CURRENT_SITE', 1 );
 
+$redis_server = [
+    'host' => 'redis',
+    'port' => 6379,
+];
+
 /* That's all, stop editing! Happy publishing. */
 
 /** Absolute path to the WordPress directory. */
