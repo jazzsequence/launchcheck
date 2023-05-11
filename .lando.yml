@@ -6,6 +6,11 @@ config:
   database: mariadb:10.5
   xdebug: true
   site: launchcheck
+services:
+  redis:
+    type: redis:6
+    persist: false
+    portforward: false
 # Multisites must have each site listed below to work under lando
 # and the URLs must match those in the wp_blogs table
 # proxy:
