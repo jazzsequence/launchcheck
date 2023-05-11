@@ -5,3 +5,8 @@ config:
   php: "8.0"
   database: mariadb:10.5
   xdebug: true
+# proxy:
+#   appserver:
+# Add multisite domains here.
+#     - foo.launchcheck.lndo.site
+#     - bar.launchcheck.lndo.site
