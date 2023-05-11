@@ -5,8 +5,12 @@ config:
   php: "8.0"
   database: mariadb:10.5
   xdebug: true
+  site: launchcheck
+# Multisites must have each site listed below to work under lando
+# and the URLs must match those in the wp_blogs table
 # proxy:
-#   appserver:
-# Add multisite domains here.
-#     - foo.launchcheck.lndo.site
+#  appserver:
+    # Add multisite domains here.
+#    - launchcheck.lndo.site
+#    - foo.launchcheck.lndo.site
 #     - bar.launchcheck.lndo.site
