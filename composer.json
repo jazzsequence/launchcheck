@@ -27,6 +27,7 @@
     "pantheon-systems/pantheon-mu-plugin": "*",
     "wpackagist-plugin/pantheon-advanced-page-cache": "*",
     "wpackagist-plugin/wp-native-php-sessions": "*",
+    "wpackagist-plugin/wp-redis": "*",
     "cweagans/composer-patches": "^1.7"
   },
   "require-dev": {
