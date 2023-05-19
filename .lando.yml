@@ -13,9 +13,9 @@ services:
     portforward: false
 # Multisites must have each site listed below to work under lando
 # and the URLs must match those in the wp_blogs table
-# proxy:
-#  appserver:
+proxy:
+  appserver:
     # Add multisite domains here.
-#    - launchcheck.lndo.site
-#    - foo.launchcheck.lndo.site
+    - launchcheck.lndo.site
+    - foo.launchcheck.lndo.site
 #     - bar.launchcheck.lndo.site

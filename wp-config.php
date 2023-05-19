@@ -112,7 +112,7 @@ if ( ! defined( 'WP_DEBUG' ) ) {
 
 defined( 'WP_ALLOW_MULTISITE' ) or define( 'WP_ALLOW_MULTISITE', true );
 defined( 'MULTISITE' ) or define( 'MULTISITE', true );
-defined( 'SUBDOMAIN_INSTALL' ) or define( 'SUBDOMAIN_INSTALL', false );
+defined( 'SUBDOMAIN_INSTALL' ) or define( 'SUBDOMAIN_INSTALL', true );
 $base = '/';
 defined( 'DOMAIN_CURRENT_SITE' ) or define( 'DOMAIN_CURRENT_SITE', 'launchcheck.lndo.site' );
 defined( 'PATH_CURRENT_SITE' ) or define( 'PATH_CURRENT_SITE', '/' );
