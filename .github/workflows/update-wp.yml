@@ -25,3 +25,29 @@ jobs:
         run: |
           # Check WP
           which wp
+          LATEST_WP_VERSION=$(curl -s https://api.wordpress.org/core/version-check/1.7/ | jq -r '.offers[0].current')
+          echo "Latest WordPress version is $LATEST_WP_VERSION"
+          CURRENT_WP_VERSION=$(cat WPVERSION)
+          echo "Current WordPress version is $CURRENT_WP_VERSION"
+          if [ "$LATEST_WP_VERSION" != "$CURRENT_WP_VERSION" ]; then
+            echo "WordPress update available"
+            echo "Updating WordPress"
+            wp core update --version=$LATEST_WP_VERSION --force
+            echo "WordPress updated"
+            echo "Updating WordPress version file"
+            echo $LATEST_WP_VERSION > WPVERSION
+            echo "WordPress version file updated"
+
+            # Commit and push changes
+            BRANCH_NAME="update-wordpress-${LATEST_WP_VERSION}"
+            git config --global user.email "actions@github.com"
+            git config --global user.name "GitHub Actions"
+            git checkout -b $BRANCH_NAME
+            git add .
+            git commit -m "Update WordPress Core to $LATEST_WP_VERSION"
+            git push origin $BRANCH_NAME
+            echo "Pushed changes to $BRANCH_NAME"
+            gh pr create --base main --head $BRANCH_NAME --title "Update WordPress Core to $LATEST_WP_VERSION" --body "This PR updates WordPress Core to $LATEST_WP_VERSION"
+          else
+            echo "WordPress is up to date"
+          fi
