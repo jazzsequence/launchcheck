@@ -1,0 +1,21 @@
+name: Check for WordPress updates
+on:
+  schedule:
+    - cron: 0 0 * * 0
+  workflow_dispatch:
+
+jobs:
+  update-wordpress:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+      - name: Install WP-CLI
+        run: |
+          ./private/scripts/maybe-add-wp-cli.sh
+      - name: Check for WordPress updates
+        run: |
+          # Check WP
+          wp info
