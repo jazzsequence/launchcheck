@@ -35,6 +35,15 @@ jobs:
           echo "Latest WordPress version is $LATEST_WP_VERSION"
           CURRENT_WP_VERSION=$(cat WPVERSION)
           echo "Current WordPress version is $CURRENT_WP_VERSION"
+          # Check if branch exists
+          BRANCH_NAME="update-wordpress-${LATEST_WP_VERSION}"
+          git fetch origin $BRANCH_NAME
+          if [ $? -eq 0 ]; then
+            echo "Branch $BRANCH_NAME exists"
+            # Delete branch.
+            git push origin --delete $BRANCH_NAME
+            echo "Deleted branch $BRANCH_NAME so we can make a new one."
+          fi
           if [ "$LATEST_WP_VERSION" != "$CURRENT_WP_VERSION" ]; then
             echo "WordPress update available"
             echo "Updating WordPress"
@@ -44,7 +53,6 @@ jobs:
             echo "WordPress version file updated"
 
             # Commit and push changes
-            BRANCH_NAME="update-wordpress-${LATEST_WP_VERSION}"
             git config --global user.email "actions@github.com"
             git config --global user.name "GitHub Actions"
             git checkout -b $BRANCH_NAME
