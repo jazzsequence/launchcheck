@@ -47,7 +47,7 @@ if (getenv('LANDO_INFO')) {
     /** URL routing (Optional, may not be necessary) */
     // define('WP_HOME','http://mysite.lndo.site');
     // define('WP_SITEURL','http://mysite.lndo.site');
-  };
+}
 
 /** Database charset to use in creating database tables. */
 defined( 'DB_CHARSET' ) or define( 'DB_CHARSET', 'utf8mb4' );
