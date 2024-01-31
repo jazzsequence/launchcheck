@@ -86,6 +86,7 @@
   },
   "scripts-descriptions": {
     "launchcheck:install": "Install WP-CLI launchcheck dependencies. To run launchcheck, use `lando wp launchcheck <option>`",
-    "launchcheck:init": "Install WP-CLI launchcheck dependencies and attempt to install jq. To run launchcheck with jq, use `lando wp launchcheck <option> --format=json | jq`"
+    "launchcheck:init": "Install WP-CLI launchcheck dependencies and attempt to install jq. To run launchcheck with jq, use `lando wp launchcheck <option> --format=json | jq`",
+    "install:wp": "Install WordPress with Lando."
   }
 }

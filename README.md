@@ -15,6 +15,8 @@ Before you are able to run `launchcheck` you will need to setup your environment
 
 You can omit the `jq` check and just run the install by using `composer launchcheck:install` instead.
 
+It's possible you might need to install WordPress core before your Lando box will run properly. There's a composer script to help with this as well: `composer install:wp`. This runs a `lando wp core install` using the `wp-config` file in this repository and creates a site with an admin user named `admin` with the password of `admin`.
+
 ## Running `launchcheck`
 Once the Composer dependencies of `wp_launch_check` are installed (see the installation steps above), you can run the `launchcheck` command in this environment normally using `lando wp launchcheck`. (This is because the `wp_launch_check/vendor/autoload.php` file is included in the `wp-config.php` file.) To see a full list of commands, run `lando wp help launchcheck`.
 
