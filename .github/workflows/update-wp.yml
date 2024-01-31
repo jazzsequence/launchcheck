@@ -25,6 +25,10 @@ jobs:
       - name: Install WP-CLI
         run: |
           ./private/scripts/maybe-add-wp-cli.sh
+      - name: Check GH User
+        run: |
+          gh auth status
+          gh api user
       - name: Check for WordPress updates
         env:
           GH_TOKEN: ${{ github.token }}
