@@ -23,7 +23,11 @@ jobs:
         with:
           php-version: ${{ matrix.php-version }}
       - name: Install Composer dependencies
-        run: composer install
+        run: |
+          if [ ${{matrix.php-version}} == "7.4"]; then
+            composer update
+          fi
+          composer install
       - name: Run PHPUnit
         run: composer test
       - name: Run PHP_CodeSniffer
