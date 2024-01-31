@@ -26,6 +26,8 @@ jobs:
         run: |
           ./private/scripts/maybe-add-wp-cli.sh
       - name: Check for WordPress updates
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           # Check WP
           which wp
