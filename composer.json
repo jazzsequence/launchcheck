@@ -79,6 +79,9 @@
       "git submodule init",
       "git submodule update",
       "composer launchcheck:install"
+    ],
+    "install:wp": [
+      "lando wp core install --url=launchcheck.lndo.site --title=launchcheck --admin_user=admin --admin_email=admin@dev.null --admin_password=admin --skip-email"
     ]
   },
   "scripts-descriptions": {
