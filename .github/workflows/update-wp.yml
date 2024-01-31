@@ -32,8 +32,7 @@ jobs:
           if [ "$LATEST_WP_VERSION" != "$CURRENT_WP_VERSION" ]; then
             echo "WordPress update available"
             echo "Updating WordPress"
-            wp core update --version=$LATEST_WP_VERSION --force
-            echo "WordPress updated"
+            wp core download --version=$LATEST_WP_VERSION --force
             echo "Updating WordPress version file"
             echo $LATEST_WP_VERSION > WPVERSION
             echo "WordPress version file updated"
