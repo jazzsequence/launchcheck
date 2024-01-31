@@ -41,12 +41,14 @@ jobs:
           echo "Current WordPress version is $CURRENT_WP_VERSION"
           # Check if branch exists
           BRANCH_NAME="update-wordpress-${LATEST_WP_VERSION}"
-          git fetch origin $BRANCH_NAME
-          if [ $? -eq 0 ]; then
-            echo "Branch $BRANCH_NAME exists"
-            # Delete branch.
-            git push origin --delete $BRANCH_NAME
-            echo "Deleted branch $BRANCH_NAME so we can make a new one."
+          git fetch origin
+          if git branch -r | grep -q "origin/$BRANCH_NAME\$"; then
+              echo "Branch $BRANCH_NAME exists"
+              # Delete branch.
+              git push origin --delete $BRANCH_NAME
+              echo "Deleted branch $BRANCH_NAME so we can make a new one."
+          else
+              echo "Branch $BRANCH_NAME does not exist"
           fi
           if [ "$LATEST_WP_VERSION" != "$CURRENT_WP_VERSION" ]; then
             echo "WordPress update available"
