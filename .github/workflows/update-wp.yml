@@ -1,0 +1,70 @@
+name: Check for WordPress updates
+on:
+  schedule:
+    - cron: 0 0 * * 0
+  workflow_dispatch:
+  push:
+    branches:
+      - '*'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-wordpress:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+      - name: Install Composer Dependencies
+        run: |
+          composer install
+      - name: Install WP-CLI
+        run: |
+          ./private/scripts/maybe-add-wp-cli.sh
+      - name: Check GH User
+        run: |
+          gh auth status
+          gh api user
+      - name: Check for WordPress updates
+        run: |
+          # Check WP
+          which wp
+          LATEST_WP_VERSION=$(curl -s https://api.wordpress.org/core/version-check/1.7/ | jq -r '.offers[0].current')
+          echo "Latest WordPress version is $LATEST_WP_VERSION"
+          CURRENT_WP_VERSION=$(cat WPVERSION)
+          echo "Current WordPress version is $CURRENT_WP_VERSION"
+          # Check if branch exists
+          BRANCH_NAME="update-wordpress-${LATEST_WP_VERSION}"
+          git fetch origin $BRANCH_NAME
+          if [ $? -eq 0 ]; then
+            echo "Branch $BRANCH_NAME exists"
+            # Delete branch.
+            git push origin --delete $BRANCH_NAME
+            echo "Deleted branch $BRANCH_NAME so we can make a new one."
+          fi
+          if [ "$LATEST_WP_VERSION" != "$CURRENT_WP_VERSION" ]; then
+            echo "WordPress update available"
+            echo "Updating WordPress"
+            wp core download --version=$LATEST_WP_VERSION --force
+            echo "Updating WordPress version file"
+            echo $LATEST_WP_VERSION > WPVERSION
+            echo "WordPress version file updated"
+
+            # Commit and push changes
+            git config --global user.email "actions@github.com"
+            git config --global user.name "GitHub Actions"
+            git checkout -b $BRANCH_NAME
+            git add .
+            git commit -m "Update WordPress Core to $LATEST_WP_VERSION"
+            git push origin $BRANCH_NAME
+            echo "Pushed changes to $BRANCH_NAME"
+            gh pr create --base main --head $BRANCH_NAME --title "Update WordPress Core to $LATEST_WP_VERSION" --body "This PR updates WordPress Core to $LATEST_WP_VERSION"
+          else
+            echo "WordPress is up to date"
+          fi

@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-version: ["7.4","8.0","8.1"]
+        php-version: ["8.0","8.1","8.2","8.3"]
     steps:
       - uses: actions/checkout@v3
       - name: Setup PHP
@@ -23,7 +23,8 @@ jobs:
         with:
           php-version: ${{ matrix.php-version }}
       - name: Install Composer dependencies
-        run: composer install
+        run: |
+          composer install
       - name: Run PHPUnit
         run: composer test
       - name: Run PHP_CodeSniffer

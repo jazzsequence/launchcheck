@@ -85,6 +85,7 @@ sitemap.xml.gz
 !private/
 private/*
 !private/config/
+!private/scripts/
 
 
 
