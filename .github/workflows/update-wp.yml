@@ -14,6 +14,8 @@ permissions:
 jobs:
   update-wordpress:
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
       - uses: shivammathur/setup-php@v2
@@ -30,8 +32,6 @@ jobs:
           gh auth status
           gh api user
       - name: Check for WordPress updates
-        env:
-          GH_TOKEN: ${{ github.token }}
         run: |
           # Check WP
           which wp
