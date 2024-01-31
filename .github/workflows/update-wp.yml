@@ -24,4 +24,4 @@ jobs:
       - name: Check for WordPress updates
         run: |
           # Check WP
-          wp info
+          which wp
