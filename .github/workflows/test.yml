@@ -10,22 +10,51 @@ on:
   schedule:
     - cron: "0 0 * * *"
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        php-version: ["8.0","8.1","8.2","8.3"]
+    env:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: pantheon
+      MYSQL_USER: pantheon
+      MYSQL_PASSWORD: pantheon
+      DB_HOST: 127.0.0.1
+    services:
+      mysql:
+        image: mariadb:10.6
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ env.MYSQL_ROOT_PASSWORD }}
+          MYSQL_DATABASE: ${{ env.MYSQL_DATABASE }}
+          MYSQL_USER: ${{ env.MYSQL_USER }}
+          MYSQL_PASSWORD: ${{ env.MYSQL_PASSWORD }}
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
     steps:
       - uses: actions/checkout@v4
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php-version }}
+          php-version: 7.4
+      - name: Install SSH Key
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY }}
       - name: Install Composer dependencies
         run: |
-          composer install
-      - name: Run PHPUnit
-        run: composer test
-      - name: Run PHP_CodeSniffer
+          composer update
+          composer launchcheck:init
+      - name: Install WP-CLI
+        uses: godaddy-wordpress/setup-wp-cli@1
+      - name: Run Lint
         run: composer lint
+      - name: Run Tests
+        run: composer test
