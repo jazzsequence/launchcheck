@@ -50,7 +50,7 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_KEY }}
       - name: Install Composer dependencies
         run: |
-          composer install
+          composer update
           composer launchcheck:init
       - name: Run PHPUnit
         run: composer test
