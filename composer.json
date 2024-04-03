@@ -90,8 +90,9 @@
     ],
     "update-wp": [
       "lando wp core update",
+      "LATEST_WP_VERSION=$(curl -s https://api.wordpress.org/core/version-check/1.7/ | jq -r '.offers[0].current') && echo $LATEST_WP_VERSION > WPVERSION",
       "git add .",
-      "git commit -m 'Update WordPress core to $(lando wp core version)'"
+      "git commit -m 'Update WordPress core to $LATEST_WP_VERSION'"
     ]
   },
   "scripts-descriptions": {
