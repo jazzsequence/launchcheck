@@ -4,9 +4,9 @@ DB_PASS="${MYSQL_ROOT_PASSWORD:-}"
 
 # If DB_PASS is set, define a CMD that includes the password.
 if [ -n "$DB_PASS" ]; then
-    CMD="mysql -u root -p$DB_PASS"
+    CMD="mysql -h $DB_HOST -u root -p$DB_PASS"
 else
-    CMD="mysql -u root"
+    CMD="mysql -h $DB_HOST -u root"
 fi
 
 DB_EXISTS=$($CMD -e "SHOW DATABASES LIKE 'pantheon';" | grep "pantheon" > /dev/null; echo "$?")
