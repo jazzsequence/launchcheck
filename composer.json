@@ -68,7 +68,10 @@
     "lint:bash": [
       "shellcheck private/scripts/*.sh"
     ],
-    "test": [],
+    "test": [
+      "echo 'Running wp_launch_check Behat tests...'",
+      "wp_launch_check//bin/behat --ansi"
+    ],
     "launchcheck:install": [
       "git submodule init",
       "git submodule update",
