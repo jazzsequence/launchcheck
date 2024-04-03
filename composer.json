@@ -72,8 +72,7 @@
       "echo 'Checking for DB...'",
       "private/scripts/create-local-db.sh",
       "echo 'Running wp_launch_check Behat tests...'",
-      "cd wp_launch_check && pwd",
-      "vendor/bin/behat --ansi"
+      "cd wp_launch_check && vendor/bin/behat --ansi"
     ],
     "launchcheck:install": [
       "git submodule init",
