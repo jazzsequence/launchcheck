@@ -88,6 +88,11 @@
     ],
     "install:wp": [
       "lando wp core install --url=launchcheck.lndo.site --title=launchcheck --admin_user=admin --admin_email=admin@dev.null --admin_password=admin --skip-email"
+    ],
+    "update-wp": [
+      "lando wp core update",
+      "git add .",
+      "git commit -m 'Update WordPress core to $(lando wp core version)'"
     ]
   },
   "scripts-descriptions": {
