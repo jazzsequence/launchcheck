@@ -60,7 +60,7 @@
       "@lint:bash"
     ],
     "lint:php": [
-      "find ./wp_launch_check -name '*.php' -exec php -l {} \\;"
+      "find ./wp_launch_check -path ./wp_launch_check/vendor -prune -o -name '*.php' -exec php -l {} \\;"
     ],
     "lint:phpcs": [
       "phpcs"
