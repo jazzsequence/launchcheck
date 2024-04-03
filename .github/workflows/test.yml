@@ -54,7 +54,7 @@ jobs:
           composer launchcheck:init
       - name: Install WP-CLI
         uses: godaddy-wordpress/setup-wp-cli@1
+      - name: Run Lint
+        run: composer lint
       - name: Run Tests
         run: composer test
-      - name: Run PHP_CodeSniffer
-        run: composer lint
