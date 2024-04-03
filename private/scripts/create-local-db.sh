@@ -1,6 +1,7 @@
 #!/bin/bash
+DB_HOST="${DB_HOST:-localhost}" # Default to localhost if not set
 
-# Check for the existence of the database
+
 DB_EXISTS=$(mysql -u root -e "SHOW DATABASES LIKE 'pantheon';" | grep "pantheon" > /dev/null; echo "$?")
 
 # If the database does not exist, create it along with the user and grant privileges
