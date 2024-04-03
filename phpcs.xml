@@ -20,7 +20,61 @@
   <!-- Show sniff codes in all reports -->
   <arg value="ns"/>
 
-  <rule ref="Pantheon-WP">
+  <rule ref="PSR2">
+    <!-- Ignore PSR spacing stuff. -->
+    <exclude name="Generic.WhiteSpace.DisallowTabIndent.TabsUsed"/>
+    <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.BraceOnSameLine"/>
+    <exclude name="PSR2.Methods.FunctionCallSignature.SpaceBeforeCloseBracket"/>
+    <exclude name="PSR2.Methods.FunctionCallSignature.SpaceAfterOpenBracket"/>
+    <exclude name="PSR2.ControlStructures.ControlStructureSpacing.SpaceBeforeCloseBrace"/>
+    <exclude name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"/>
+    <exclude name="Generic.Functions.FunctionCallArgumentSpacing.NoSpaceAfterComma"/>
+    <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.SpaceAfterFunction"/>
+    <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing.SpacingBeforeClose"/>
+    <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing.SpacingAfterOpen"/>
+    <exclude name="PSR2.Classes.ClassDeclaration.OpenBraceNewLine"/>
+    <exclude name="PSR2.Classes.ClassDeclaration.CloseBraceNewLine"/>
+    <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
+    <exclude name="PSR2.Classes.ClassDeclaration.CloseBraceAfterBody"/>
+    <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseParenthesis"/>
+    <exclude name="Squiz.WhiteSpace.ScopeClosingBrace.ContentBefore"/>
+    <exclude name="Squiz.ControlStructures.ControlSignature.NewlineAfterOpenBrace"/>
+    <exclude name="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+    <exclude name="PSR2.Methods.FunctionClosingBrace.SpacingBeforeClose"/>
+    <exclude name="PSR2.Methods.FunctionCallSignature.CloseBracketLine"/>
+    <exclude name="PSR2.Methods.FunctionCallSignature.Indent"/>
+    <exclude name="PSR2.Methods.FunctionCallSignature.ContentAfterOpenBracket"/>
+    <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing.SpaceAfterEquals"/>
+    <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing.SpaceBeforeEquals"/>
+    <exclude name="Squiz.WhiteSpace.ScopeClosingBrace.Indent"/>
+    <exclude name="Generic.WhiteSpace.ScopeIndent.IncorrectExact"/>
+    <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseBrace"/>
+    <exclude name="Squiz.WhiteSpace.ControlStructureSpacing.SpacingAfterOpen"/>
+    <exclude name="Generic.Functions.FunctionCallArgumentSpacing.SpaceBeforeComma"/>
+    <exclude name="Squiz.WhiteSpace.ControlStructureSpacing.SpacingBeforeClose"/>
+    <exclude name="PSR2.Files.EndFileNewline.TooMany"/>
+    <exclude name="Generic.WhiteSpace.ScopeIndent.Incorrect"/>
+    <exclude name="PSR2.ControlStructures.SwitchDeclaration.BreakIndent"/>
+    <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.ContentAfterBrace"/>
+    <exclude name="Generic.Functions.FunctionCallArgumentSpacing.TooMuchSpaceAfterComma"/>
+    <exclude name="Generic.WhiteSpace.DisallowTabIndent.NonIndentTabsUsed"/>
+
+    <!-- Ignore caps things. -->
+    <exclude name="PSR1.Methods.CamelCapsMethodName.NotCamelCaps"/>
+    <exclude name="Generic.PHP.LowerCaseConstant.Found"/>
+    <exclude name="Generic.PHP.LowerCaseKeyword.Found"/>
+
+    <!-- Ignore PSR2 control structure stuff. -->
+    <exclude name="Generic.ControlStructures.InlineControlStructure.NotAllowed"/>
+    <exclude name="Squiz.Scope.MethodScope.Missing"/>
+    <exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace"/>
+    <exclude name="PSR2.Classes.PropertyDeclaration.ScopeMissing"/>
+    <exclude name="PSR2.Namespaces.UseDeclaration.MultipleDeclarations"/>
+    <exclude name="PSR1.Classes.ClassDeclaration.MultipleClasses"/>
+    <exclude name="PSR2.Classes.PropertyDeclaration.Multiple"/>
+
+    <!-- Ignore other stuff -->
+    <exclude name="PHPCompatibility.Extensions.RemovedExtensions.mysql_DeprecatedRemoved"/>
   </rule>
 
   <rule ref="PHPCompatibility" />
