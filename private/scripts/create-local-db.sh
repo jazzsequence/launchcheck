@@ -12,7 +12,7 @@ fi
 DB_EXISTS=$($CMD -e "SHOW DATABASES LIKE 'pantheon';" | grep "pantheon" > /dev/null; echo "$?")
 
 # If the database does not exist, create it along with the user and grant privileges
-if [ $DB_EXISTS -ne 0 ]; then
+if [ "$DB_EXISTS" -ne 0 ]; then
     $CMD -e "CREATE DATABASE pantheon; CREATE USER 'pantheon'@'localhost' IDENTIFIED BY 'pantheon'; GRANT ALL PRIVILEGES ON pantheon.* TO 'pantheon'@'localhost'; FLUSH PRIVILEGES;"
 else
     echo "Database pantheon already exists."
