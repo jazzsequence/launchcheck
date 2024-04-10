@@ -57,4 +57,25 @@ jobs:
       - name: Run Lint
         run: composer lint
       - name: Run Tests
-        run: composer test
+        id: run_tests
+        run: |
+          set -o pipefail
+          composer test | tee test.log || echo "TESTS FAILED=true"  >> $GITHUB_ENV
+      - name: Check for failed tests
+        if: env.TESTS_FAILED == 'true'
+        id: test_output
+        shell: bash
+        run: |
+          OUTPUT=$(cat test.log)
+          echo "OUTPUT=$OUTPUT" >> $GITHUB_ENV
+      - name: Create issue on failed tests
+        if: env.TESTS_FAILED == 'true'
+        uses: jasonetco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OUTPUT: ${{ env.OUTPUT }}
+          LOG_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        with:
+          search_existing: open
+          update_existing: true
+          filename: .github/automated-tests-failed.md
