@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eae4e0cddf7d7730484fcdc5b5fb1fed",
+    "content-hash": "3e2138a8c3cec7a3749da75308d60cef",
     "packages": [
         {
             "name": "composer/installers",
@@ -264,16 +264,16 @@
         },
         {
             "name": "pantheon-systems/pantheon-mu-plugin",
-            "version": "1.4.4",
+            "version": "1.4.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pantheon-systems/pantheon-mu-plugin.git",
-                "reference": "cb4e5b1e4258eb41f4c50010d7ab3f853cc56daf"
+                "reference": "b4dbc5777622043c4089c7707f83fe7d17fbf1c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pantheon-systems/pantheon-mu-plugin/zipball/cb4e5b1e4258eb41f4c50010d7ab3f853cc56daf",
-                "reference": "cb4e5b1e4258eb41f4c50010d7ab3f853cc56daf",
+                "url": "https://api.github.com/repos/pantheon-systems/pantheon-mu-plugin/zipball/b4dbc5777622043c4089c7707f83fe7d17fbf1c9",
+                "reference": "b4dbc5777622043c4089c7707f83fe7d17fbf1c9",
                 "shasum": ""
             },
             "require": {
@@ -293,9 +293,9 @@
             "description": "Pantheon mu-plugin for WordPress sites.",
             "support": {
                 "issues": "https://github.com/pantheon-systems/pantheon-mu-plugin/issues",
-                "source": "https://github.com/pantheon-systems/pantheon-mu-plugin/tree/1.4.4"
+                "source": "https://github.com/pantheon-systems/pantheon-mu-plugin/tree/1.4.5"
             },
-            "time": "2024-06-04T19:40:05+00:00"
+            "time": "2024-07-19T18:54:52+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -2811,7 +2811,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=8.1"
+        "php": ">=8.0"
     },
     "platform-dev": [],
     "plugin-api-version": "2.6.0"
