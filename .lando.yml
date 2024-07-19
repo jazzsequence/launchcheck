@@ -2,8 +2,8 @@ name: launchcheck
 recipe: wordpress
 config:
   webroot: .
-  php: "8.0"
-  database: mariadb:10.5
+  php: "8.2"
+  database: mariadb:10.6
   xdebug: true
   site: launchcheck
 services:
