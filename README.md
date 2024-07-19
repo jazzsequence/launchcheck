@@ -21,3 +21,6 @@ It's possible you might need to install WordPress core before your Lando box wil
 Once the Composer dependencies of `wp_launch_check` are installed (see the installation steps above), you can run the `launchcheck` command in this environment normally using `lando wp launchcheck`. (This is because the `wp_launch_check/vendor/autoload.php` file is included in the `wp-config.php` file.) To see a full list of commands, run `lando wp help launchcheck`.
 
 Some `launchcheck` commands can output their data in JSON syntax using the `--format=json` flag. If you have `jq` installed, you can pipe the output to `jq` to have the JSON pretty-printed, e.g. `lando wp launchcheck config --format=json | jq`.
+
+## A note about PHP 7.4
+Yes, this environment is running PHP 7.4. This is because the Behat tests break with PHP 8+. Getting the Behat tests to work with PHP 8+ would require development investment which is outside the scope of this project at this time. If you want to run the Behat tests, you will need to run them with PHP 7.4 for the forseeable future.
