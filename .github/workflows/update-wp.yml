@@ -11,6 +11,8 @@ permissions:
 jobs:
   update-wordpress:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
       - uses: shivammathur/setup-php@v2
