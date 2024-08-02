@@ -26,8 +26,6 @@ jobs:
           ./private/scripts/maybe-add-wp-cli.sh
       - name: Check GH User
         run: |
-          gh auth login --with-token
-          gh auth status
           gh api user
       - name: Check for WordPress updates
         run: |
