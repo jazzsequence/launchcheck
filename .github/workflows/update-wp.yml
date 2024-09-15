@@ -10,6 +10,8 @@ permissions:
 
 jobs:
   update-wordpress:
+    env:
+      GH_TOKEN: ${{ github.token }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
