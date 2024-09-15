@@ -11,7 +11,7 @@ permissions:
 jobs:
   update-wordpress:
     env:
-      GH_TOKEN: ${{ github.token }}
+      GH_TOKEN: ${{ secrets.API_TOKEN }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
